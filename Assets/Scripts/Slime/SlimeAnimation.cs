@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UniRx;
@@ -33,6 +34,11 @@ namespace Slime
             SetupClips();
         }
 
+        private void OnEnable()
+        {
+            slimeAct.TakeUntilDisable(this).Subscribe(ChangeAnim);
+        }
+
         private void SetupClips()
         {
             _clips = new Dictionary<SlimeAct, AnimationClip>
@@ -57,8 +63,6 @@ namespace Slime
             var output = AnimationPlayableOutput.Create(_playableGraph, "output", GetComponent<Animator>());
             output.SetSourcePlayable(_animationMixerPlayable);
             _playableGraph.Play();
-
-            slimeAct.TakeUntilDestroy(this).Subscribe(ChangeAnim);
         }
 
         private void ChangeAnim(SlimeAct act)
