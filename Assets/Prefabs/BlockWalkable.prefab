@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 3697815356310407715}
   - component: {fileID: 3488724718923948560}
   - component: {fileID: 4912494145206377306}
+  - component: {fileID: 4172569666704016418}
   m_Layer: 6
-  m_Name: Block
+  m_Name: BlockWalkable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,6 +60,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a64bd230044e8ab90bc57232fff27f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4172569666704016418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2780114687931117056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3d9a582cb704d5b997c53c796c64ca3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BlockState: 0
+  Column: 0
+  Row: 0
 --- !u!1001 &1284456527380789633
 PrefabInstance:
   m_ObjectHideFlags: 0

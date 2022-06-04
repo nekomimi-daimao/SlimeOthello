@@ -137,7 +137,7 @@ namespace Block
 
             UnityEditor.EditorGUILayout.Space();
 
-            for (var c = 0; c < instance.Column; c++)
+            for (var c = instance.Column - 1; c >= 0; c--)
             {
                 GUILayout.BeginHorizontal();
 
