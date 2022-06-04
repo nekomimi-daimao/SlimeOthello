@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c35d66414078405e843a406a150f8802, type: 3}
   m_Name: 2
   m_EditorClassIdentifier: 
-  StageName: 
+  stageName: 2
+  serialized: 010000000100000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  serializedColumn: 5
+  serializedRow: 3
