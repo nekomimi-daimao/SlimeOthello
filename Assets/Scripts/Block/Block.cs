@@ -6,9 +6,13 @@ namespace Block
     [RequireComponent(typeof(NavMeshTargetBox))]
     public sealed class Block : MonoBehaviour
     {
-        public BlockState BlockState;
+        [SerializeField]
+        public BlockState blockState;
 
-        public int Column;
-        public int Row;
+        [SerializeField]
+        public int column;
+
+        [SerializeField]
+        public int row;
     }
 }

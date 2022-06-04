@@ -51,12 +51,15 @@ namespace Block
                 {
                     var blockState = blockMap.Map[c, r];
                     var prefab = _prefabDic[blockState];
-                    Instantiate(
+                    var instance = Instantiate(
                         prefab,
                         center + new Vector3(-centerR + r, 0f, -centerC + c),
                         Quaternion.identity,
                         ts
                     );
+                    instance.blockState = blockState;
+                    instance.column = c;
+                    instance.row = r;
                     _subjectCreateBlock.OnNext(blockState);
                     await UniTask.Delay(TimeSpan.FromSeconds(interval));
                 }
