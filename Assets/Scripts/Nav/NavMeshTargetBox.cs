@@ -12,7 +12,7 @@ namespace Nav
 
         private void OnEnable()
         {
-            gameObject.layer = TL.Layer.NavMeshTarget.LayerInt();
+            gameObject.layer = TL.Layer.Block.LayerInt();
             _collider = GetComponent<BoxCollider>();
             _ts = _collider.transform;
         }

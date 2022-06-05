@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5504413208233050172}
   - component: {fileID: 8744975289047822220}
   - component: {fileID: 3074559033921560457}
+  - component: {fileID: 4908854303349675860}
   m_Layer: 6
   m_Name: BlockUnreachable
   m_TagString: Untagged
@@ -72,9 +73,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d9a582cb704d5b997c53c796c64ca3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BlockState: 0
-  Column: 0
-  Row: 0
+  blockState: 0
+  column: 0
+  row: 0
+--- !u!114 &4908854303349675860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2780114687931117056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!1001 &1284456527380789633
 PrefabInstance:
   m_ObjectHideFlags: 0

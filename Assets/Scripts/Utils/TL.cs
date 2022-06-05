@@ -8,7 +8,6 @@ namespace Utils
         public enum Tag
         {
             Default = 0,
-            NavMeshTarget,
         }
 
         public static string Name(this Tag tag)
@@ -20,7 +19,8 @@ namespace Utils
         public enum Layer
         {
             Default = 0,
-            NavMeshTarget = 1 << 0,
+            Block = 1 << 0,
+            Cage = 1 << 1,
         }
 
         public static int Mask(this Layer layer)

@@ -21,8 +21,7 @@ namespace Block
 
         private Dictionary<BlockState, Block> _prefabDic;
 
-        private readonly Subject<BlockState> _subjectCreateBlock = new();
-        public IObservable<BlockState> OnCreateBlock => _subjectCreateBlock;
+        public readonly ReactiveCollection<Block> Created = new();
 
         private const float IntervalSec = 0.2f;
 
@@ -39,6 +38,9 @@ namespace Block
         public async UniTask Generate(BlockMap blockMap, float interval = IntervalSec)
         {
             await UniTask.SwitchToMainThread();
+
+            Clear();
+
             var ts = this.transform;
             var center = ts.position;
 
@@ -60,7 +62,7 @@ namespace Block
                     instance.blockState = blockState;
                     instance.column = c;
                     instance.row = r;
-                    _subjectCreateBlock.OnNext(blockState);
+                    Created.Add(instance);
                     await UniTask.Delay(TimeSpan.FromSeconds(interval));
                 }
             }
@@ -70,7 +72,7 @@ namespace Block
             cage.localPosition = Vector3.zero;
             cage.localRotation = Quaternion.identity;
             cage.localScale = new Vector3(blockMap.Row, 6f, blockMap.Column);
-            cage.gameObject.layer = TL.Layer.NavMeshTarget.LayerInt();
+            cage.gameObject.layer = TL.Layer.Cage.LayerInt();
 
             Destroy(cage.GetComponent<Renderer>());
             Destroy(cage.GetComponent<Collider>());
@@ -84,6 +86,7 @@ namespace Block
         [ContextMenu(nameof(Clear))]
         private void Clear()
         {
+            Created.Clear();
             foreach (Transform child in transform)
             {
                 Destroy(child.gameObject);
