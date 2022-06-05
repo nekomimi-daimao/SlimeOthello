@@ -18,6 +18,10 @@ namespace Slime
 
         public Vector3 Destination => _agent.destination;
 
+        internal void Init(Slime slime)
+        {
+        }
+
         private void OnEnable()
         {
             _agent = GetComponent<NavMeshAgent>();

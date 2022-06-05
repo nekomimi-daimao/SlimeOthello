@@ -9,7 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1319377108031769255}
+  - component: {fileID: 5436073672756692672}
   - component: {fileID: 1319377108031769256}
+  - component: {fileID: 6433076646810807004}
+  - component: {fileID: 1709222539853027049}
+  - component: {fileID: 8369512644273057082}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Untagged
@@ -36,6 +40,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5436073672756692672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319377108031769257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dceb4ec7af2e455a903ea9779b1fd512, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  belongs:
+    value: 0
+  act:
+    value: 0
+  slimeSwitch: {fileID: 1319377108031769256}
+  slimeMove: {fileID: 6433076646810807004}
 --- !u!114 &1319377108031769256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48,12 +70,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cad4696f27a4c99936b2b68abea5f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  belongs:
-    value: 0
   neutral: {fileID: 8942677729005960618}
   leaf: {fileID: 4213571147325265408}
   army: {fileID: 3848589925762232981}
   king: {fileID: 5343884131015393787}
+--- !u!114 &6433076646810807004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319377108031769257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 409896fac5314e88ab2c093b5d82cf5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!195 &1709222539853027049
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319377108031769257}
+  m_Enabled: 1
+  m_AgentTypeID: -1372625422
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!54 &8369512644273057082
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319377108031769257}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1319377107003925156
 PrefabInstance:
   m_ObjectHideFlags: 0

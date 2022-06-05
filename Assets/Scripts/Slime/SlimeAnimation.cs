@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UniRx;
@@ -12,8 +11,6 @@ namespace Slime
     [RequireComponent(typeof(Animator))]
     public class SlimeAnimation : MonoBehaviour
     {
-        public ReactiveProperty<SlimeAct> slimeAct = new(SlimeAct.Idle);
-
         [SerializeField]
         private AnimationClip idle;
 
@@ -34,9 +31,9 @@ namespace Slime
             SetupClips();
         }
 
-        private void OnEnable()
+        internal void Init(Slime slime)
         {
-            slimeAct.TakeUntilDisable(this).Subscribe(ChangeAnim);
+            slime.act.TakeUntilDisable(this).Subscribe(ChangeAnim);
         }
 
         private void SetupClips()
@@ -78,12 +75,5 @@ namespace Slime
                 _animationMixerPlayable.SetInputWeight(count, count == index ? 1f : 0f);
             }
         }
-
-#if UNITY_EDITOR
-        private void OnValidate()
-        {
-            slimeAct.SetValueAndForceNotify(slimeAct.Value);
-        }
-#endif
     }
 }
