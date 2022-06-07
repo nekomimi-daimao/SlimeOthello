@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92ccd9af014a47ac989fa7e1d67ed2bb, type: 3}
+  m_Name: Level
+  m_EditorClassIdentifier: 
+  levelName: Level
+  blockMap: {fileID: 11400000, guid: 61a5d79d144694ff18a8017fcd9a5e6a, type: 2}
+  slimePopulation: {fileID: 11400000, guid: 341219b3c32d04ebc8e205234a34e7a2, type: 2}

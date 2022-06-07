@@ -21,6 +21,7 @@ namespace Utils
             Default = 0,
             Block = 1 << 0,
             Cage = 1 << 1,
+            Slime = 1 << 2,
         }
 
         public static int Mask(this Layer layer)

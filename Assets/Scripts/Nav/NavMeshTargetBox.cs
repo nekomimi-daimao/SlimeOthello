@@ -7,14 +7,14 @@ namespace Nav
     [RequireComponent(typeof(BoxCollider))]
     public sealed class NavMeshTargetBox : MonoBehaviour
     {
-        private BoxCollider _collider;
+        public BoxCollider Collider { get; private set; }
         private Transform _ts;
 
         private void OnEnable()
         {
             gameObject.layer = TL.Layer.Block.LayerInt();
-            _collider = GetComponent<BoxCollider>();
-            _ts = _collider.transform;
+            Collider = GetComponent<BoxCollider>();
+            _ts = Collider.transform;
         }
 
         public NavMeshBuildSource BuildSource()
@@ -22,8 +22,8 @@ namespace Nav
             return new NavMeshBuildSource
             {
                 shape = NavMeshBuildSourceShape.Box,
-                transform = Matrix4x4.TRS(_ts.position - (_collider.center / 2), _ts.rotation, _ts.localScale),
-                size = _collider.size.ChangeY(0f),
+                transform = Matrix4x4.TRS(_ts.position - (Collider.center / 2), _ts.rotation, _ts.localScale),
+                size = Collider.size.ChangeY(0f),
                 area = 0,
             };
         }

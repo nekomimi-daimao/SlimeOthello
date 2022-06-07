@@ -21,7 +21,7 @@ namespace Block
 
         private Dictionary<BlockState, Block> _prefabDic;
 
-        public readonly ReactiveCollection<Block> Created = new();
+        public readonly ReactiveCollection<Block> Generated = new();
 
         private const float IntervalSec = 0.2f;
 
@@ -62,7 +62,7 @@ namespace Block
                     instance.blockState = blockState;
                     instance.column = c;
                     instance.row = r;
-                    Created.Add(instance);
+                    Generated.Add(instance);
                     await UniTask.Delay(TimeSpan.FromSeconds(interval));
                 }
             }
@@ -86,11 +86,12 @@ namespace Block
         [ContextMenu(nameof(Clear))]
         private void Clear()
         {
-            Created.Clear();
-            foreach (Transform child in transform)
+            foreach (var g in Generated)
             {
-                Destroy(child.gameObject);
+                Destroy(g.gameObject);
             }
+
+            Generated.Clear();
         }
 
 #if UNITY_EDITOR

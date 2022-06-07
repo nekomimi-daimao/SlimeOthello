@@ -1,5 +1,8 @@
+using System;
+
 namespace Slime
 {
+    [Flags]
     public enum SlimeBelongs
     {
         Neutral = 0,

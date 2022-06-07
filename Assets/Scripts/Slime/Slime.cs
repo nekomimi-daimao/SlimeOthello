@@ -1,5 +1,6 @@
 using UniRx;
 using UnityEngine;
+using Utils;
 
 namespace Slime
 {
@@ -12,10 +13,11 @@ namespace Slime
         private SlimeSwitch slimeSwitch;
 
         [SerializeField]
-        private SlimeMove slimeMove;
+        public SlimeMove slimeMove;
 
         private void Awake()
         {
+            this.gameObject.layer = TL.Layer.Slime.LayerInt();
             slimeSwitch.Init(this);
             slimeMove.Init(this);
         }

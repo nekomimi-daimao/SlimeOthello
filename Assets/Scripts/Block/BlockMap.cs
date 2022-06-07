@@ -5,12 +5,10 @@ using UnityEngine;
 
 namespace Block
 {
-    [CreateAssetMenu(fileName = "BlockMap", menuName = "SlimeOthello/BlockMap", order = 0)]
+    [CreateAssetMenu(fileName = "BlockMap", menuName = "SlimeOthello/BlockMap", order = 1)]
     [Serializable]
     public sealed class BlockMap : ScriptableObject
     {
-        public string stageName;
-
         public BlockState[,] Map = new BlockState[3, 3];
         public int Row => Map.GetLength(1);
         public int Column => Map.GetLength(0);
@@ -111,13 +109,6 @@ namespace Block
             if (instance == null)
             {
                 return;
-            }
-
-            if (string.IsNullOrEmpty(instance.stageName))
-            {
-                Debug.Log(UnityEditor.AssetDatabase.GetAssetPath(instance));
-                instance.stageName = Path.GetFileNameWithoutExtension(UnityEditor.AssetDatabase.GetAssetPath(instance));
-                Save();
             }
 
             instance.DeserializeMap();
