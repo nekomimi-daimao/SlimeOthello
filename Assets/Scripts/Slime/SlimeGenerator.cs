@@ -13,7 +13,7 @@ namespace Slime
 
         public readonly ReactiveCollection<Slime> Generated = new();
 
-        public async UniTask Generate(SlimePopulation population, Vector3[] positions)
+        public async UniTask GeneratePopulation(SlimePopulation population, Vector3[] positions)
         {
             var belongsAll = (SlimeBelongs[])Enum.GetValues(typeof(SlimeBelongs));
             var belongs = belongsAll.Select(b =>
@@ -46,6 +46,15 @@ namespace Slime
                 slime.belongs.Value = b;
                 Generated.Add(slime);
             }
+        }
+
+        public async UniTask<Slime> Generate(SlimeBelongs belongs)
+        {
+            await UniTask.SwitchToMainThread();
+            var slime = Instantiate(slimePrefab, this.transform);
+            slime.belongs.Value = belongs;
+            Generated.Add(slime);
+            return slime;
         }
 
         [ContextMenu(nameof(Clear))]

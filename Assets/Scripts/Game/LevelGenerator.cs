@@ -9,10 +9,10 @@ namespace Game
     public sealed class LevelGenerator : MonoBehaviour
     {
         [SerializeField]
-        private BlockGenerator blockGenerator;
+        public BlockGenerator blockGenerator;
 
         [SerializeField]
-        private SlimeGenerator slimeGenerator;
+        public SlimeGenerator slimeGenerator;
 
         public async UniTask Generate(Level level)
         {
@@ -26,14 +26,15 @@ namespace Game
                     return center + Vector3.up * (1f + half);
                 })
                 .ToArray();
-            await slimeGenerator.Generate(level.slimePopulation, positions);
+            await slimeGenerator.GeneratePopulation(level.slimePopulation, positions);
         }
 
 #if UNITY_EDITOR
-        public Level levelInspector;
+        [SerializeField]
+        private Level levelInspector;
 
         [ContextMenu(nameof(GenerateLevelInspector))]
-        public void GenerateLevelInspector()
+        private void GenerateLevelInspector()
         {
             Generate(levelInspector).Forget();
         }

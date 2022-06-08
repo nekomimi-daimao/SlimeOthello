@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using UniRx;
 
@@ -9,40 +8,33 @@ namespace Slime
     {
         private readonly ReactiveDictionary<SlimeBelongs, int> _count = new();
         private readonly CompositeDisposable _compositeDisposable = new();
+        private readonly IReadOnlyReactiveCollection<Slime> _generated;
+        private readonly SlimeBelongs[] _belongsArray = (SlimeBelongs[])Enum.GetValues(typeof(SlimeBelongs));
         public IReadOnlyReactiveDictionary<SlimeBelongs, int> Count => _count;
 
-        private struct BelongsFromTo
+        public SlimeCounter(IReadOnlyReactiveCollection<Slime> generated)
         {
-            internal readonly SlimeBelongs From;
-            internal readonly SlimeBelongs To;
-
-            public BelongsFromTo(SlimeBelongs from, SlimeBelongs to)
-            {
-                this.From = from;
-                this.To = to;
-            }
-        }
-
-        public SlimeCounter(IReadOnlyCollection<Slime> generated)
-        {
-            var belongsArray = (SlimeBelongs[])Enum.GetValues(typeof(SlimeBelongs));
-            foreach (var slimeBelongs in belongsArray)
-            {
-                _count[slimeBelongs] = generated.Count(slime => slime.belongs.Value == slimeBelongs);
-            }
+            _generated = generated;
 
             generated.Select(
-                    slime => slime.belongs
-                        .Zip(slime.belongs.Skip(1), (x, y) => new BelongsFromTo(x, y)))
+                    slime => slime.belongs)
                 .Merge()
+                .AsUnitObservable()
+                .Subscribe(UpdateCount)
+                .AddTo(_compositeDisposable);
+
+            generated.ObserveCountChanged()
+                .AsUnitObservable()
                 .Subscribe(UpdateCount)
                 .AddTo(_compositeDisposable);
         }
 
-        private void UpdateCount(BelongsFromTo fromTo)
+        private void UpdateCount(Unit _)
         {
-            _count[fromTo.From] -= 1;
-            _count[fromTo.To] += 1;
+            foreach (var slimeBelongs in _belongsArray)
+            {
+                _count[slimeBelongs] = _generated.Count(slime => slime.belongs.Value == slimeBelongs);
+            }
         }
 
         public void Dispose()

@@ -23,6 +23,8 @@ namespace Block
 
         public readonly ReactiveCollection<Block> Generated = new();
 
+        public Block[,] CreatedMap { get; private set; }
+
         private const float IntervalSec = 0.2f;
 
         private void Awake()
@@ -40,6 +42,8 @@ namespace Block
             await UniTask.SwitchToMainThread();
 
             Clear();
+
+            CreatedMap = new Block[blockMap.Column, blockMap.Row];
 
             var ts = this.transform;
             var center = ts.position;
@@ -63,6 +67,7 @@ namespace Block
                     instance.column = c;
                     instance.row = r;
                     Generated.Add(instance);
+                    CreatedMap[c, r] = instance;
                     await UniTask.Delay(TimeSpan.FromSeconds(interval));
                 }
             }
@@ -92,6 +97,7 @@ namespace Block
             }
 
             Generated.Clear();
+            CreatedMap = new Block[0, 0];
         }
 
 #if UNITY_EDITOR
